@@ -1,0 +1,32 @@
+policy | invalid | expected score | realized score | coverage | realized/expected successes (z)
+greedy | 0 | 0.3577 | 0.3875 | 0.3347 | 93/85.9 (+0.8)
+no_asks | 0 | 0.1036 | 0.0917 | 0.1187 | 22/24.9 (-0.6)
+targeted_asks_only | 0 | 0.3618 | 0.3542 | 0.3340 | 85/86.8 (-0.2)
+maxcard_only | 0 | 0.3594 | 0.3708 | 0.3354 | 89/86.2 (+0.3)
+maxcard_newcomer_only | 0 | 0.3604 | 0.3917 | 0.3388 | 94/86.5 (+0.8)
+v1_no_newcomer_bonus | 0 | 0.3657 | 0.3792 | 0.3341 | 91/87.8 (+0.3)
+v1 | 0 | 0.3654 | 0.4000 | 0.3391 | 96/87.7 (+0.9)
+
+Paired expected-score difference no_asks - greedy (mean ± SE):
+  development -0.2902±0.0168, sparse -0.0804±0.0082, cold_start -0.3371±0.0217, delayed -0.2799±0.0147, shift -0.2635±0.0158, drift -0.2739±0.0146, overall -0.2542±0.0065
+  coverage: development -0.2278±0.0076, sparse -0.1128±0.0065, cold_start -0.2712±0.0100, delayed -0.2275±0.0075, shift -0.2285±0.0076, drift -0.2280±0.0077, overall -0.2160±0.0032
+
+Paired expected-score difference targeted_asks_only - greedy (mean ± SE):
+  development +0.0063±0.0088, sparse -0.0001±0.0002, cold_start +0.0032±0.0101, delayed +0.0060±0.0064, shift +0.0026±0.0056, drift +0.0063±0.0071, overall +0.0040±0.0029
+  coverage: development -0.0010±0.0011, sparse +0.0003±0.0004, cold_start -0.0013±0.0021, delayed -0.0010±0.0012, shift -0.0002±0.0009, drift -0.0010±0.0011, overall -0.0007±0.0005
+
+Paired expected-score difference maxcard_only - greedy (mean ± SE):
+  development +0.0023±0.0051, sparse -0.0001±0.0001, cold_start +0.0020±0.0068, delayed +0.0058±0.0042, shift -0.0029±0.0046, drift +0.0028±0.0040, overall +0.0017±0.0019
+  coverage: development +0.0025±0.0013, sparse -0.0005±0.0003, cold_start -0.0015±0.0016, delayed +0.0002±0.0013, shift +0.0010±0.0012, drift +0.0023±0.0012, overall +0.0007±0.0005
+
+Paired expected-score difference maxcard_newcomer_only - greedy (mean ± SE):
+  development +0.0047±0.0071, sparse -0.0001±0.0001, cold_start +0.0087±0.0058, delayed +0.0013±0.0037, shift -0.0012±0.0053, drift +0.0029±0.0061, overall +0.0027±0.0021
+  coverage: development +0.0060±0.0026, sparse -0.0003±0.0003, cold_start +0.0022±0.0013, delayed +0.0057±0.0018, shift +0.0050±0.0024, drift +0.0058±0.0025, overall +0.0041±0.0008
+
+Paired expected-score difference v1_no_newcomer_bonus - greedy (mean ± SE):
+  development +0.0126±0.0093, sparse +0.0006±0.0005, cold_start +0.0112±0.0099, delayed +0.0095±0.0057, shift +0.0026±0.0058, drift +0.0116±0.0076, overall +0.0080±0.0029
+  coverage: development -0.0002±0.0014, sparse +0.0000±0.0005, cold_start -0.0013±0.0015, delayed -0.0007±0.0013, shift -0.0007±0.0012, drift -0.0005±0.0013, overall -0.0006±0.0005
+
+Paired expected-score difference v1 - greedy (mean ± SE):
+  development +0.0142±0.0077, sparse +0.0003±0.0004, cold_start +0.0085±0.0091, delayed +0.0095±0.0046, shift +0.0019±0.0050, drift +0.0118±0.0065, overall +0.0077±0.0025
+  coverage: development +0.0058±0.0026, sparse +0.0000±0.0005, cold_start +0.0033±0.0012, delayed +0.0068±0.0019, shift +0.0053±0.0023, drift +0.0055±0.0026, overall +0.0044±0.0008

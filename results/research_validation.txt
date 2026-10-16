@@ -1,0 +1,7 @@
+policy | invalid | expected score | realized score | coverage | realized/expected successes (z)
+greedy | 0 | 0.3663 | 0.3738 | 0.3350 | 314/307.7 (+0.4)
+v1 | 0 | 0.3718 | 0.4024 | 0.3395 | 338/312.3 (+1.5)
+
+Paired expected-score difference v1 - greedy (mean ± SE):
+  development +0.0108±0.0040, sparse +0.0003±0.0006, cold_start -0.0017±0.0044, delayed +0.0039±0.0037, shift +0.0086±0.0036, drift +0.0109±0.0037, overall +0.0055±0.0015
+  coverage: development +0.0061±0.0011, sparse -0.0001±0.0003, cold_start +0.0038±0.0009, delayed +0.0064±0.0011, shift +0.0051±0.0009, drift +0.0060±0.0011, overall +0.0046±0.0004

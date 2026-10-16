@@ -21,5 +21,5 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 This licence applies only to our own submission files: policy.py, test_policy_v1.py,
-run_experiments.sh, and REPORT.md. Starter-kit files remain under the organisers'
-LICENSE and DATA_LICENSE as stated in the repository.
+run_experiments.sh, research/, REPORT.md, and docs/figures/. Starter-kit files
+remain under the organisers' LICENSE and DATA_LICENSE as stated in the repository.

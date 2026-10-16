@@ -2,6 +2,14 @@
 
 **Team:** Outliers · **Policy:** v1 (`policy.py`) · **Kit:** 1.0.0 · All people and outcomes are synthetic. The results describe this simulator only.
 
+## Executive summary
+
+- **Hypothesis:** The score is limited mainly by how many workable pairs get introduced before people become unavailable; ranking pairs by hidden success adds only about +0.012 on diagnostic seeds, so v1 targets clarification and maximum-cardinality allocation instead.
+- **Method:** Validity shield, targeted constraint asks (12-unit budget), then `max_weight_matching` with newcomer and soft-field tie-breaks; deterministic, no training, JSON-in/JSON-out only.
+- **Validity record:** 0 invalid episodes on official public runs (18/18 per policy), container check (`results/container_check.json`), and research harness runs on the frozen test split (this repo).
+- **Key evidence:** Expected-score gain vs greedy **+0.0055 ± 0.0015** on validation seeds 2000–2069 and **+0.0143 ± 0.0030** on the untouched test split 3000–3019 (`results/research_test_split_expected.json`, rerun in this submission); ablations support that both asks and matching matter.
+- **Main limitation:** Gains are small versus noise on any single private evaluation; realized MSMI on the test split favoured greedy by luck while expected scores favoured v1 in every family.
+
 ## 1 Hypothesis and decision objective
 
 **Hypothesis.** The score is limited mainly by *how many workable pairs get introduced before the people involved become unavailable*, not by how well pairs are ranked. In a research-only diagnostic, we let greedy rank pairs by their true hidden success probability. This added only about +0.012 on seeds 101–105, which puts a ceiling on what any ranking model can gain. So v1 targets clarification and allocation instead.
@@ -86,29 +94,57 @@ All runs used `evaluate.py` in trusted-local mode, with one real subprocess per 
 
 Paired realized difference v1 - greedy over the same 18 worlds: MSMI -0.056 ± 0.080; coverage +0.0075 ± 0.0024; v1 better/equal/worse in 3/10/5 worlds.
 
+![Outcome funnel on public seeds](docs/figures/fig2_funnel.png)
+
+*Figure 2: Total introductions through MSMI pairs on the 18 official public worlds (seeds 101–103 × six families), from `results/final.json` and baseline JSONs.*
+
 **How to read these results.** Public worlds have very few successes: there are 12–16 qualifying pairs per policy across 18 worlds, and one pair changes the score by about 0.028. The realized v1 − greedy difference (−0.056 ± 0.080) is well within noise. v1 was better in 3 worlds, equal in 10 and worse in 5. On these same 18 worlds, the research expected-score difference is −0.0002 ± 0.0049 (Round 1 analysis), so neither policy had a real edge here. What *does* show up clearly on these worlds is **coverage: +0.0075 ± 0.0024** (v1 serves more distinct members), and v1 has more dates and mutual acceptances than greedy (177 vs 155 dates; 222 vs 198 acceptances). We don't choose the submitted policy from 18 noisy worlds. The decision rests on the low-noise evidence in Section 6.
 
 ## 6 Lower-noise evidence: expected score on many worlds
 
-Realized outcomes are too rare to separate the policies. Our research measure sums the simulator's exact success probability for every introduction made. This uses hidden values offline only, never inside the policy. We checked it against reality: over 3,925 single-pair runs it predicted 45.0 successes and 42 happened, and on new worlds the predicted and actual results stayed within noise in every family. Our faster harness took the same actions as `evaluate.py` in 72 of 72 episodes.
+Realized outcomes are too rare to separate the policies. Our research measure sums the simulator's exact success probability for every introduction made. This uses hidden values offline only, never inside the policy (`research/compare.py` and `research/harness.py`). We checked it against reality: over 3,925 single-pair runs it predicted 45.0 successes and 42 happened, and on new worlds the predicted and actual results stayed within noise in every family. Our faster harness took the same actions as `evaluate.py` in 72 of 72 episodes.
+
+**Round 1 research runs (reproducible with `research/compare.py`; numbers below not re-run in this submission):**
 
 | Policy (change in expected score vs greedy, paired, mean ± SE) | Worlds | Change |
 |---|---|---|
-| no_asks | 120 (validation 2000–2019) | −0.2542 ± 0.0065 |
+| no_asks | 120 (seeds 2000–2019) | −0.2542 ± 0.0065 |
 | random | 120 | −0.0026 ± 0.0030 |
 | Targeted asks only | 120 | +0.0040 ± 0.0029 |
 | Max matching only | 120 | +0.0017 ± 0.0019 |
 | Max matching + newcomer bonus | 120 | +0.0027 ± 0.0021 |
 | **v1 (all parts)** | 120 | **+0.0077 ± 0.0025** |
 | v1, fresh validation worlds | 300 (2020–2069) | +0.0046 ± 0.0018 |
-| v1, all validation worlds | 420 | +0.0055 ± 0.0015 |
-| **v1, untouched test split (frozen settings, run once)** | 120 (test 3000–3019) | **+0.0143 ± 0.0030** |
+| v1, all validation worlds | 420 (2000–2069) | **+0.0055 ± 0.0015** |
+
+**Untouched test split (rerun for this submission; `results/research_test_split_expected.json`):**
+
+| Policy | Worlds | Change vs greedy (expected, paired) |
+|---|---|---|
+| **v1** | 120 (test 3000–3019) | **+0.0143 ± 0.0030** |
+
+![Expected-score gain by family](docs/figures/fig1_gain_by_family.png)
+
+*Figure 1: Paired expected-score gain of v1 over greedy by scenario family (validation and test splits; from committed research JSON).*
+
+**Calibration: realized vs expected successes (does the metric favour v1?)**
+
+| Split | Policy | Realized | Expected | z | One-line reading |
+|---|---|---:|---:|---:|---|
+| Validation 2000–2069 (Round 1) | greedy | 314 | 307.7 | +0.4 | Realized and expected agree within noise. |
+| Validation 2000–2069 (Round 1) | v1 | 338 | 312.3 | +1.5 | Slight positive z; not a large optimistic bias for v1. |
+| Test 3000–3019 (this submission) | greedy | 106 | 83.1 | **+2.5** | Greedy realized MSMI is far above its own expectation (lucky draws). |
+| Test 3000–3019 (this submission) | v1 | 86 | 86.5 | **−0.1** | v1 realized matches expectation; no inflation from the metric. |
 
 **Final confirmation on the untouched test split.** Settings were frozen before this run, and it was done once at the end (`results/research_test_split_expected.json`). v1's expected gain was positive in **every** family: development +0.020, sparse +0.001, cold start +0.014, delayed +0.020, shift +0.012, drift +0.019. Distinct-member coverage rose by +0.30 ± 0.04 percentage points. The realized counts on those 120 worlds went the other way: v1 had 86 successes against greedy's 106 (−0.083 ± 0.052 per 100). v1's 86 matches its expected 86.5, while greedy's 106 is about 2.5 SD above its own expected 83.1. We report this openly. Our reading is that greedy was lucky on these outcome draws, but the realized result is exactly the kind of variation a single private evaluation can show.
 
 The gain is consistent but small. On validation, +0.0055 is about 1.3 extra successful pairs across 120 episodes, so on one private evaluation v1 would beat greedy only about 54% of the time.
 
 ## 7 Ablation (hypothesis-driven)
+
+![Ablation expected gains](docs/figures/fig3_ablation.png)
+
+*Figure 3: Paired expected-score change vs greedy for ablation configs (Round 1 seeds 2000–2019; `results/research_ablation.json` when present, reproducible via `research/compare.py`).*
 
 **Claim tested:** only *combining* better clarification (more feasible members, sooner) with throughput allocation (more of them introduced) raises the score, because each part feeds the other.
 
@@ -161,4 +197,13 @@ The Docker build and the offline container evaluation (`--network=none`, 2 CPUs,
 
 ## 12 Reproducing
 
-See `README.md` for the exact commands. `./run_experiments.sh` regenerates every file in `results/`. Seeds: public 101–103 (official runs), validation 2000–2069 (development), test 3000–3019 (one final confirmation). There are no training seeds and no inference randomness.
+See `README.md` for official evaluator commands. `./run_experiments.sh` regenerates evaluator JSON in `results/`. Expected-score research:
+
+```bash
+python research/compare.py --policies greedy,no_asks,targeted_asks_only,maxcard_only,maxcard_newcomer_only,v1_no_newcomer_bonus,v1 --seeds 2000-2019 --workers 8 --out results/research_ablation.json
+python research/compare.py --policies greedy,v1 --seeds 2000-2069 --workers 8 --out results/research_validation.json
+python research/compare.py --policies greedy,v1 --seeds 3000-3019 --workers 8 --out results/research_test_split_expected.json
+python evaluate.py --seeds 101,102,103 --variants all --output results/final.json
+```
+
+Seeds: public 101–103 (official runs), validation 2000–2069 (development), test 3000–3019 (frozen confirmation). No training seeds and no inference randomness.

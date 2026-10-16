@@ -115,7 +115,7 @@
         18,
         19
       ],
-      "inference_seconds": 165.21639464405598,
+      "inference_seconds": 172.4352811240533,
       "action_sha256": "c52cb317b620c05661b53ec20c4070f617c1665a0d980d36de6f46925a25b939",
       "seed": 101,
       "variant": "development"
@@ -130,7 +130,7 @@
         "coverage": 0.465,
         "mutual_acceptances_per_100": 10.0,
         "ask_cost": 198,
-        "inference_seconds": 165.21639464405598
+        "inference_seconds": 172.4352811240533
       }
     },
     "overall": {
@@ -138,14 +138,14 @@
       "coverage": 0.465,
       "mutual_acceptances_per_100": 10.0,
       "ask_cost": 198,
-      "inference_seconds": 165.21639464405598
+      "inference_seconds": 172.4352811240533
     },
     "ranking_key_descending": [
       1.0,
       0.465,
       10.0,
       -198,
-      -165.21639464405598
+      -172.4352811240533
     ]
   }
 }

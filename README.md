@@ -1,6 +1,22 @@
 # Getting more workable pairs introduced in time: policy v1
 
-This is our final submission for the CRSU x Romeo & Juliet Hackathon (Vouchsafe track). It is built on starter kit **1.0.0**. The technical report is **[REPORT.md](REPORT.md)**, and the machine-readable results are in **[results/](results/)**.
+**Team Outliers** — final submission for the CRSU x Romeo & Juliet Hackathon (Vouchsafe track), starter kit **1.0.0**. Full write-up: **[REPORT.md](REPORT.md)** · Figures: **[docs/figures/](docs/figures/)** · JSON: **[results/](results/)**.
+
+### Results at a glance
+
+| Source | Metric | v1 | greedy | random | no_asks |
+|---|---|---:|---:|---:|---:|
+| Official evaluator (seeds 101–103 × 6 families; `results/*.json`) | Primary score (MSMI/100) | **0.333** | 0.389 | 0.278 | 0.139 |
+| Same | Coverage | **0.379** | 0.372 | 0.377 | 0.143 |
+| Research expected gain vs greedy (paired; `research/compare.py`) | Validation 2000–2069 | **+0.0055 ± 0.0015** | — | — | — |
+| Same | Test 3000–3019 (frozen, rerun in repo) | **+0.0143 ± 0.0030** | — | — | — |
+
+Research commands (offline; uses hidden simulator values **only** in `research/`, never in `policy.py`):
+
+```bash
+uv run --python 3.12 python research/compare.py --policies greedy,v1 --seeds 2000-2069 --workers 8 --out results/research_validation.json
+uv run --python 3.12 python research/compare.py --policies greedy,v1 --seeds 3000-3019 --workers 8 --out results/research_test_split_expected.json
+```
 
 **Policy v1** (`policy.py`) has three parts:
 1. **Validity shield:** removes any ask or pair the simulator would reject.
@@ -58,7 +74,8 @@ To reproduce every result (v1, the three baselines and the ablations; about 1.5 
 | `run_experiments.sh` | Reproduces all JSON results |
 | `REPORT.md` | Technical report with the product integration note |
 | `THIRD_PARTY_NOTICES.md` | Provenance, licences and tools |
-| `LICENSE_SUBMISSION` | Licence for our own code; kit files keep the organisers' LICENSE |
+| `LICENSE-TEAM` | MIT licence for our own code; kit files keep the organisers' LICENSE |
+| `research/` | Offline harness and expected-score comparisons (not in Docker image) |
 | `KIT_README.md` | The organisers' original README |
 
 All people and outcomes are synthetic. Results describe this simulator only.
