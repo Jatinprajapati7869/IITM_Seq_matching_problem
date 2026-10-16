@@ -14,8 +14,8 @@
 Research commands (offline; uses hidden simulator values **only** in `research/`, never in `policy.py`):
 
 ```bash
-uv run --python 3.12 python research/compare.py --policies greedy,v1 --seeds 2000-2069 --workers 8 --out results/research_validation.json
-uv run --python 3.12 python research/compare.py --policies greedy,v1 --seeds 3000-3019 --workers 8 --out results/research_test_split_expected.json
+python research/compare.py --policies greedy,v1 --seeds 2000-2069 --workers 8 --out results/research_validation.json
+python research/compare.py --policies greedy,v1 --seeds 3000-3019 --workers 8 --out results/research_test_split_expected.json
 ```
 
 **Policy v1** (`policy.py`) has three parts:

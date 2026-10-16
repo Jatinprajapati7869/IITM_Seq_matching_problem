@@ -64,5 +64,8 @@ if ab:
     ax.barh(order, means, xerr=ses, color=[INDIGO if p == 'v1' else GREY for p in order], capsize=3)
     ax.axvline(0, color='black', lw=0.8); ax.set_xlabel('Expected score vs greedy (mean ± SE)'); ax.set_title('Ablation: which parts matter')
     if 'no_asks' in order: ax.set_xlim(left=min(-0.02, min(m for p, m in zip(order, means) if p != 'no_asks') - 0.01))
+    if 'no_asks' in order:
+        i = order.index('no_asks')
+        ax.text(ax.get_xlim()[0], i, f"  no_asks = {means[i]:+.3f} (bar clipped)", va='center', fontsize=8, color='white')
     fig.tight_layout(); fig.savefig(os.path.join(FIG, 'fig3_ablation.png'), dpi=180); plt.close(fig)
 print('figures in', FIG, sorted(os.listdir(FIG)))
