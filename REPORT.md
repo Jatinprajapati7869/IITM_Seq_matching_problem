@@ -1,6 +1,6 @@
 # Getting More Workable Pairs Introduced in Time: Technical Report (Round 2)
 
-**Team:** _<team name>_ · **Policy:** v1 (`policy.py`) · **Kit:** 1.0.0 · All people and outcomes are synthetic. The results describe this simulator only.
+**Team:** Outliers · **Policy:** v1 (`policy.py`) · **Kit:** 1.0.0 · All people and outcomes are synthetic. The results describe this simulator only.
 
 ## 1 Hypothesis and decision objective
 

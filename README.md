@@ -58,6 +58,7 @@ To reproduce every result (v1, the three baselines and the ablations; about 1.5 
 | `run_experiments.sh` | Reproduces all JSON results |
 | `REPORT.md` | Technical report with the product integration note |
 | `THIRD_PARTY_NOTICES.md` | Provenance, licences and tools |
+| `LICENSE_SUBMISSION` | Licence for our own code; kit files keep the organisers' LICENSE |
 | `KIT_README.md` | The organisers' original README |
 
 All people and outcomes are synthetic. Results describe this simulator only.

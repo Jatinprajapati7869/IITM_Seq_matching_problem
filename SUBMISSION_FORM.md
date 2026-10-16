@@ -1,15 +1,15 @@
 # Text to paste into the "Final submission" GitHub issue
 
 **Team name and size**
-<TEAM NAME>, <N> participant(s)
+Outliers, 2 participant(s)
 
 **Public source URL and immutable version**
-Repository: https://github.com/<USER>/<REPO>
+Repository: https://github.com/Jatinprajapati7869/CSRU
 Commit SHA: <FULL 40-CHARACTER SHA from `git rev-parse HEAD`>
 
 **Report and results URLs**
-Report: https://github.com/<USER>/<REPO>/blob/<SHA>/REPORT.md
-Results: https://github.com/<USER>/<REPO>/tree/<SHA>/results
+Report: https://github.com/Jatinprajapati7869/CSRU/blob/<SHA>/REPORT.md
+Results: https://github.com/Jatinprajapati7869/CSRU/tree/<SHA>/results
 (final.json = v1; baseline_greedy/no_asks/random.json; ablation_*.json; container_check.json; research_test_split_expected.json)
 
 **Build and evaluation commands**
