@@ -1,0 +1,8 @@
+*
+!kit.py
+!policy.py
+!Dockerfile
+!vendor
+!vendor/**
+**/__pycache__
+**/*.pyc
