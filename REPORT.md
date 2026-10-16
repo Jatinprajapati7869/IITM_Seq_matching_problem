@@ -131,12 +131,12 @@ Realized outcomes are too rare to separate the policies. Our research measure su
 
 | Split | Policy | Realized | Expected | z | One-line reading |
 |---|---|---:|---:|---:|---|
-| Validation 2000–2069 (Round 1) | greedy | 314 | 307.7 | +0.4 | Realized and expected agree within noise. |
-| Validation 2000–2069 (Round 1) | v1 | 338 | 312.3 | +1.5 | Slight positive z; not a large optimistic bias for v1. |
+| Validation 2000–2069 (rerun in this submission) | greedy | 314 | 307.7 | +0.4 | Realized and expected agree within noise. |
+| Validation 2000–2069 (rerun in this submission) | v1 | 338 | 312.3 | +1.5 | Slight positive z; not a large optimistic bias for v1. |
 | Test 3000–3019 (this submission) | greedy | 106 | 83.1 | **+2.5** | Greedy realized MSMI is far above its own expectation (lucky draws). |
 | Test 3000–3019 (this submission) | v1 | 86 | 86.5 | **−0.1** | v1 realized matches expectation; no inflation from the metric. |
 
-**Final confirmation on the untouched test split.** Settings were frozen before this run, and it was done once at the end (`results/research_test_split_expected.json`). v1's expected gain was positive in **every** family: development +0.020, sparse +0.001, cold start +0.014, delayed +0.020, shift +0.012, drift +0.019. Distinct-member coverage rose by +0.30 ± 0.04 percentage points. The realized counts on those 120 worlds went the other way: v1 had 86 successes against greedy's 106 (−0.083 ± 0.052 per 100). v1's 86 matches its expected 86.5, while greedy's 106 is about 2.5 SD above its own expected 83.1. We report this openly. Our reading is that greedy was lucky on these outcome draws, but the realized result is exactly the kind of variation a single private evaluation can show.
+**Final confirmation on the untouched test split.** Settings were frozen before this run, and it was done once at the end (`results/research_test_split_expected.json`). v1's expected gain was positive in **every** family: development +0.020, sparse +0.001, cold start +0.014, delayed +0.020, shift +0.012, drift +0.019. Distinct-member coverage rose by +0.59 ± 0.07 percentage points. The realized counts on those 120 worlds went the other way: v1 had 86 successes against greedy's 106 (−0.083 ± 0.052 per 100). v1's 86 matches its expected 86.5, while greedy's 106 is about 2.5 SD above its own expected 83.1. We report this openly. Our reading is that greedy was lucky on these outcome draws, but the realized result is exactly the kind of variation a single private evaluation can show.
 
 The gain is consistent but small. On validation, +0.0055 is about 1.3 extra successful pairs across 120 episodes, so on one private evaluation v1 would beat greedy only about 54% of the time.
 
@@ -150,7 +150,7 @@ The gain is consistent but small. On validation, +0.0055 is about 1.3 extra succ
 
 - **Remove targeted asks (max matching only, ± newcomer bonus):** expected gain falls from +0.0077 to +0.0017 or +0.0027. More pairs introduced each day helps only a little when the pool of complete members is the bottleneck.
 - **Remove max matching (targeted asks only):** +0.0040 ± 0.0029. More members become complete, but greedy matching wastes some of them at busy members.
-- **Remove the newcomer bonus (`v1_no_newcomer_bonus`, official run):** coverage drops from 0.379 to 0.373, which matches the claim that the bonus spreads introductions to people who haven't had one yet.
+- **Remove the newcomer bonus (`v1_no_newcomer_bonus`):** expected score is unchanged (+0.0080 ± 0.0029 vs v1's +0.0077 ± 0.0025, results/research_ablation.txt), but coverage falls (−0.0006 vs +0.0044 vs greedy; official run 0.373 vs 0.379). The bonus spreads introductions to people who haven't had one yet; it is a coverage choice, not a score lever.
 - **Remove clarification entirely (no_asks):** −0.254. Asking is by far the most important part, because members can't be introduced until their hard fields are known.
 
 **When it hurts:** in **cold start** v1 shows no expected gain (−0.0017 ± 0.0044). When most members are incomplete, ordering asks by potential partners can delay people who would complete a pair with someone already known. A pairing-aware ask order is the next thing to test.
