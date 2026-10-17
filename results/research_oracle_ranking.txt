@@ -1,0 +1,16 @@
+
+Seeds 101-105 (30 episodes per policy)
+policy | invalid | expected score | coverage
+greedy | 0 | 0.3586 | 0.3535
+oracle | 0 | 0.3685 | 0.3553
+Paired expected-score difference oracle - greedy (mean ± SE):
+  development +0.0121±0.0087, sparse +0.0000±0.0000, cold_start +0.0302±0.0107, delayed +0.0054±0.0107, shift -0.0018±0.0047, drift +0.0137±0.0067, overall +0.0099±0.0032
+  coverage: development +0.0040±0.0019, sparse +0.0000±0.0000, cold_start -0.0020±0.0058, delayed +0.0030±0.0012, shift +0.0020±0.0012, drift +0.0040±0.0019, overall +0.0018±0.0011
+
+Seeds 2000-2019 (120 episodes per policy)
+policy | invalid | expected score | coverage
+greedy | 0 | 0.3577 | 0.3347
+oracle | 0 | 0.3766 | 0.3355
+Paired expected-score difference oracle - greedy (mean ± SE):
+  development +0.0302±0.0077, sparse -0.0003±0.0003, cold_start +0.0222±0.0077, delayed +0.0149±0.0063, shift +0.0177±0.0066, drift +0.0287±0.0062, overall +0.0189±0.0026
+  coverage: development +0.0035±0.0019, sparse -0.0007±0.0004, cold_start -0.0018±0.0015, delayed +0.0005±0.0013, shift -0.0005±0.0015, drift +0.0035±0.0019, overall +0.0008±0.0006

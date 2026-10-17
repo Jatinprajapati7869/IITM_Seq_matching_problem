@@ -29,7 +29,7 @@ class FastSimulator(Simulator):
                 for i in ends[e['introduction_id']]:
                     self._pause[i] = min(self._pause.get(i, 10**9), e['observed_day'])
 
-# ---- exact expected P(MSMI | introduction) — RESEARCH ONLY ----
+# Exact P(MSMI | introduction) from hidden simulator values. Research only; policies never see this.
 _x, _w = np.polynomial.hermite_e.hermegauss(40); _w = _w / _w.sum(); _S = _x * .45
 def _sig(z): return 1 / (1 + np.exp(-z))
 _DATE_OK = {}

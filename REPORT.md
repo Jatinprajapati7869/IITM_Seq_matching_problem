@@ -11,7 +11,7 @@ Each simulated day, v1 spends the clarification budget on the members whose answ
 - v1 returned valid actions in every episode we ran: the 18 official public episodes, the offline container check, and 678 episodes in our research harness.
 - On the official public runs, v1 scores 0.333 and greedy 0.389. That is 12 MSMI pairs against 14 over 18 episodes, which is within noise. v1 reaches more members (coverage 0.379 against 0.372) and gets more mutual acceptances (222 against 198).
 - Because MSMI outcomes are rare, we chose the policy using expected MSMI computed offline from the simulator's hidden probabilities (Section 6). Against greedy, v1 gains +0.0055 ± 0.0015 on 420 validation worlds and +0.0143 ± 0.0030 on 120 held-out test worlds, which we ran once after freezing the policy. The test gain is positive in all six families.
-- The gain is small. On a 120-episode private evaluation, v1 should beat greedy only somewhat more often than not (about 54% to 61% of the time).
+- The gain is small. We estimate that v1 beats greedy on a 120-episode private evaluation about 54% to 61% of the time (Section 6).
 
 All ± values in this report are one standard error. Scores are MSMI (both people say they want to meet again) per 100 arrived members, the official primary score.
 
@@ -19,7 +19,7 @@ All ± values in this report are one standard error. Scores are MSMI (both peopl
 
 To produce an MSMI, a pair must first be introduced. That requires both people to be available at the same time, to have all their hard constraints known, and to be compatible. Our hypothesis is that the score is limited mainly by how many compatible pairs get introduced before people become busy, paused or leave, and much less by which compatible pairs are chosen.
 
-Two results point this way. Removing clarification costs −0.254 in expected score (Section 7), so getting hard constraints answered matters a great deal. In a diagnostic from our Round 1 note, we let greedy rank pairs by their true hidden success probability, which no real policy can see. That raised the expected score by only about +0.012 on seeds 101 to 105. (We did not rerun this diagnostic for the final build, and its code is not in this repository.)
+Two results point this way. Removing clarification costs −0.254 in expected score (Section 7), about 70% of greedy's expected score, so getting hard constraints answered matters a great deal. Choosing better pairs matters much less. In a diagnostic, we let greedy rank pairs by their true hidden success probability, which no real policy can see (`research/oracle_ranking.py`). This perfect ranking raised the expected score by +0.0189 ± 0.0026 on the 120 ablation worlds (seeds 2000 to 2019), about 5% of greedy's expected score, and by +0.0099 ± 0.0032 on seeds 101 to 105, close to the +0.012 in our Round 1 note. A real model could recover only part of that.
 
 So v1 does not try to predict who will get along. Each day it aims to:
 
@@ -214,7 +214,7 @@ z = (realized − expected) / √expected.
 - **Competition for the same candidate.** A popular member can be in only one introduction at a time and is then busy for 8 days (longer if a date follows), so some of their possible pairs run out of time. Maximum matching reduces this waste but cannot remove it.
 - **Pauses after success.** When a pair reaches mutual interest, both people pause and their other possible pairs are lost. No policy can avoid this.
 - **Delayed feedback, shift and drift.** v1 does not learn from outcomes, so delays and changing outcome weights cannot mislead it. The flip side is that it cannot take advantage of them either.
-- **Validity.** No episode has been invalid in any run: 144 official-evaluator episodes (8 configurations × 18), the container check, and 1,974 research-harness episodes across all configurations, 678 of them for v1. The unit tests make both v1 components raise errors and check that the responses are still valid.
+- **Validity.** No episode has been invalid in any run: 144 official-evaluator episodes (8 configurations × 18), the container check, and 1,974 research-harness episodes across all configurations, 678 of them for v1 (plus 300 in the ranking diagnostic). The unit tests make both v1 components raise errors and check that the responses are still valid.
 
 ## 9. Runtime and resources
 
@@ -234,7 +234,7 @@ The Docker build and the offline container evaluation (`--network=none`, 2 CPUs,
 - The outcomes are invented. The simulator's response model, disclosure rates and 8-day busy period are assumptions. Nothing here shows that v1 would increase real second-meeting intention, or that its effects would be even across groups of real people.
 - The gain is small compared with the noise in a single private evaluation (Section 6).
 - The expected-score measure relies on the simulator's own probability model. It is a research tool, not product evidence. No historical propensities are supplied, so we make no off-policy claims.
-- v1 does not learn individual response tendencies and does not plan ahead across days. Both are untested ideas for future work.
+- v1 does not rank pairs by predicted success, does not learn individual response tendencies and does not plan ahead across days. Ranking still has some value: with perfect knowledge it adds +0.019 on the ablation worlds (Section 1), more than v1's +0.0077. We would also test a ranker learned from observed fields, added on top of v1.
 
 ## 11. Product integration note (Vouchsafe)
 
@@ -256,6 +256,7 @@ python research/compare.py --policies greedy,no_asks,targeted_asks_only,maxcard_
 python research/compare.py --policies greedy,v1 --seeds 2000-2069 --out results/research_validation.json > results/research_validation.txt
 python research/compare.py --policies greedy,v1 --seeds 3000-3019 --out results/research_test_split_expected.json > results/research_test_split.txt
 python research/compare.py --policies greedy,no_asks,v1 --seeds 101-103 --out results/research_public_check.json > results/research_public_check.txt
+python research/oracle_ranking.py --seeds 101-105,2000-2019 --out results/research_oracle_ranking.json > results/research_oracle_ranking.txt
 python research/checks.py
 python research/make_figures.py
 ```

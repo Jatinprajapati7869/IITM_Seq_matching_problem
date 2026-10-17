@@ -35,6 +35,20 @@ On these episodes v1 is two MSMI pairs behind greedy, which is within noise: one
 
 The gain is small but consistent. On the test split it is positive in all six families. The report covers scenario-level results, coverage, waiting times, ask cost, missing feedback, runtime, ablations and failure cases.
 
+![Expected gain of v1 over greedy by scenario family](docs/figures/fig2_gain_by_family.png)
+
+## Where to find each required item
+
+| Requirement in `docs/SUBMISSION.md` | Where it is |
+|---|---|
+| Policy source and Dockerfile with all inference assets | `policy.py`, `Dockerfile`, `vendor/networkx/` |
+| Setup and evaluation commands, Python and dependency versions, training and inference seeds | This README: [Environment](#environment), [Commands](#commands), [Seeds](#seeds) |
+| Full-episode results for greedy, no clarification, random feasible and v1 on the same seeds and scenarios | `results/baseline_greedy.json`, `results/baseline_no_asks.json`, `results/baseline_random.json`, `results/final.json` |
+| Scenario outcomes, coverage, waiting times, clarification cost, missing feedback, runtime | `REPORT.md` Sections 5 and 9 |
+| Hypothesis-driven ablation and limitations | `REPORT.md` Sections 1, 7 and 10 |
+| Provenance, dependency licences, training compute | `THIRD_PARTY_NOTICES.md`, `REPORT.md` Section 4 |
+| Product integration note | `REPORT.md` Section 11 |
+
 ## Environment
 
 | Item | Value |
@@ -75,6 +89,7 @@ python research/compare.py --policies greedy,no_asks,targeted_asks_only,maxcard_
 python research/compare.py --policies greedy,v1 --seeds 2000-2069 --out results/research_validation.json > results/research_validation.txt
 python research/compare.py --policies greedy,v1 --seeds 3000-3019 --out results/research_test_split_expected.json > results/research_test_split.txt
 python research/compare.py --policies greedy,no_asks,v1 --seeds 101-103 --out results/research_public_check.json > results/research_public_check.txt
+python research/oracle_ranking.py --seeds 101-105,2000-2019 --out results/research_oracle_ranking.json > results/research_oracle_ranking.txt
 python research/checks.py
 python research/make_figures.py
 ```
@@ -98,7 +113,7 @@ python research/make_figures.py
 | `run_experiments.sh` | Regenerates all official-evaluator JSON in `results/` |
 | `results/` | Machine-readable results: official runs, container check and research runs |
 | `REPORT.md`, `docs/figures/` | Technical report with the product integration note, and its figures |
-| `research/` | Offline research harness, comparison, checks and figure scripts (not used by the policy) |
+| `research/` | Offline research harness, comparisons, ranking diagnostic, checks and figure scripts (not used by the policy) |
 | `requirements-research.txt` | Research-only dependencies |
 | `THIRD_PARTY_NOTICES.md` | Provenance, licences and tools |
 | `LICENSE-TEAM` | MIT licence for the team's own code and documents |
