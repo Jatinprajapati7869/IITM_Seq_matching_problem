@@ -1,5 +1,9 @@
-"""RESEARCH-ONLY harness (never imported by policy.py). Official evaluate.episode logic, in-process policy calls, faster but equivalent simulator,
-plus a RESEARCH-ONLY exact expected-MSMI metric computed from latent truth (never visible to policies)."""
+"""Research-only harness. policy.py never imports this file, and it is not in the Docker image.
+
+It runs the official evaluate.episode loop with in-process policy calls and a faster copy of the
+simulator, then computes expected MSMI for each introduction from hidden simulator values after the
+episode has finished. Policies never see these values.
+"""
 import sys, json, math, statistics as st
 import os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -9,7 +13,6 @@ import numpy as np
 import evaluate
 from kit import Simulator, generate
 VARIANTS = evaluate.VARIANTS
-SEEDS = {'train': range(1000, 2000), 'validation': range(2000, 2500), 'test': range(3000, 3500), 'public': [101, 102, 103]}
 
 class FastSimulator(Simulator):
     """Same semantics as kit.Simulator; caches pause times instead of scanning every event per member."""
@@ -52,8 +55,8 @@ def p_msmi(a, b, variant, day):
     return float((v * _w).sum()) * .78 * .36 * date_ok(variant)
 
 def run_episode(decide, seed, variant, sim_class=None):
-    sim_class = sim_class or FasterSimulator
     """decide(request)->response. Requests/responses round-trip through JSON exactly like the real boundary."""
+    sim_class = sim_class or FasterSimulator
     holder = {}
     class Tracked(sim_class):
         def __init__(self, world): super().__init__(world); holder['sim'] = self
@@ -69,7 +72,7 @@ def run_episode(decide, seed, variant, sim_class=None):
         return {'valid': False, 'error': str(e), 'seed': seed, 'variant': variant}
     sim = holder['sim']
     row['expected_msmi'] = sum(p_msmi(sim.members[i['user_a']], sim.members[i['user_b']], variant, i['assigned_day']) for i in sim.introductions)
-    row.update(seed=seed, variant=variant); row.pop('first_introduction_wait_days', None) if False else None
+    row.update(seed=seed, variant=variant)
     return row
 
 def summary(rows):

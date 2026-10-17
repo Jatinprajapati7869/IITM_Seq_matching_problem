@@ -1,13 +1,15 @@
-"""RESEARCH-ONLY paired comparison of policy configurations on many simulator worlds.
+"""Research-only paired comparison of policy configurations on the same simulator worlds.
 
-Runs the official evaluate.episode logic in-process (same actions as the CLI; verified 72/72 episodes)
-and adds a low-noise 'expected' score: the exact MSMI probability of every introduction made, computed
-from hidden simulator values AFTER the episode. Hidden values are never visible to the policy.
+It runs the official evaluate.episode loop in-process (research/checks.py confirms identical actions
+to the official evaluator on the public seeds) and adds an expected score: the exact MSMI probability
+of every introduction made, computed from hidden simulator values after each episode. The policy
+never sees these values.
 
-Usage (from the repo root):
-  python research/compare.py --policies greedy,v1 --seeds 2000-2049 --out results/research_val.json
-  python research/compare.py --policies v1,v2_candidate --seeds 2000-2049 --variants development,cold_start
-The FIRST policy is the reference for paired differences. Policy names are keys of policy.CONFIGS.
+Usage, from the repository root:
+  python research/compare.py --policies greedy,v1 --seeds 2000-2069 --workers 2 --out results/research_validation.json
+  python research/compare.py --policies greedy,v1 --seeds 3000-3019 --variants cold_start,sparse
+
+The first policy is the reference for paired differences. Policy names are keys of policy.CONFIGS.
 """
 import argparse, importlib.util, json, math, os, statistics as st, sys, time
 from multiprocessing import Pool
