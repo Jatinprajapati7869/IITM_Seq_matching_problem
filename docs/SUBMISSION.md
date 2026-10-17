@@ -7,11 +7,11 @@
 | Round 2 build starts | 12 October 2026 |
 | Final build submission closes | 18 October 2026, 23:59 |
 
-All times are IST (UTC+05:30). CRSU teams have one to three participants; mentorship and workshops are not included. Round 1 research submissions use a Google Form that the organisers will release soon. Round 2 final build submissions use the Final submission issue form in this repository.
+All times are IST (UTC+05:30). Teams have one to four participants. Round 1 research submissions use a Google Form that the organisers will release soon. Round 2 final build submissions use the Final submission issue form in this repository.
 
 ## Research submission
 
-The Google Form link is not yet available. It will be released through [the official Discord server](https://discord.gg/ka3uRZza6) and added to this guide. GitHub Issues are not an accepted research submission route.
+The Google Form link is not yet available. It will be released through [the official Discord server](https://discord.gg/GwZdY54Gq) and added to this guide. GitHub Issues are not an accepted research submission route.
 
 Prepare a PDF or Markdown approach note covering the problem interpretation, hypothesis, reciprocal feasibility and any optional probability analysis, allocation method, clarification policy, handling of missing and delayed data, planned baselines, ablations and failure cases. Follow the form's upload or document-link instructions once it is released.
 
@@ -28,7 +28,6 @@ Your project must include:
 - Machine-readable full-episode results for greedy, no-clarification, random-feasible and your method on the same seeds and scenarios.
 - A report with scenario-level outcomes, coverage, waiting times, clarification costs, missing feedback, runtime, at least one hypothesis-driven ablation and limitations.
 - Model/data/tool provenance, dependency licences and any training-compute requirements.
-- A concise product integration note in the report describing consent checks, human approval, user-facing explanations, data minimisation, failure monitoring and assumptions requiring validation before any Vouchsafe use. This note does not change the published technical score.
 
 Run from your project root:
 

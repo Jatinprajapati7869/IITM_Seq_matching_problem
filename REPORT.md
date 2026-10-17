@@ -1,6 +1,6 @@
 # Technical report: getting more compatible pairs introduced in time
 
-Team Outliers, CRSU x Romeo & Juliet Hackathon, Vouchsafe track, Round 2 final build. Submitted policy: v1 (`policy.py`). Starter kit 1.0.0.
+Team Outliers, The Sequential Matching Problem (Romeo & Juliet × IIT Madras Hackathon), Round 2 final build. Submitted policy: v1 (`policy.py`). Starter kit 1.0.0.
 
 All people and outcomes here are synthetic. The results describe this simulator only, not real members.
 

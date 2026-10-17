@@ -24,11 +24,9 @@
 
 **Why can my score be zero?** The qualifying outcome is deliberately downstream: mutual acceptance, a date and two timely second-meeting Yes answers. Small episodes can have very few such events. Compare multiple seeds and report the entire outcome funnel.
 
-**Does this track include mentorship or workshops?** No. The CRSU track does not include mentorship or workshops.
-
 **Who owns our code?** You do. Participation does not grant a commercial licence. Supplied starter materials have their own permissions; a later product licence is a separate agreement.
 
-**Where should we communicate?** Ask technical questions through the Question issue form in this repository. Public answers give all teams the same technical information. Follow official CRSU channels for event logistics. Do not post participant codes, personal data or credentials in public issues.
+**Where should we communicate?** Ask technical questions through the Question issue form. Public answers give everyone the same information. Use [the IITM Discord server](https://discord.gg/GwZdY54Gq) for event announcements and reminders. The repository contains authoritative technical rules and files.
 
 **Where are private seeds and outcomes?** They are held by organisers and are deliberately absent from this public repository. Public development data is not a private leaderboard.
 
@@ -38,8 +36,8 @@
 
 **Can we fix a failure discovered after the deadline?** No. Self-validate using the published tests and public/container evaluator before the deadline. Early organiser/private validation is not guaranteed; later private assessment uses the frozen commit or checksum-pinned archive. See SUBMISSION.md for the full policy.
 
-**Where are event announcements?** Join [the official Discord server](https://discord.gg/ka3uRZza6). Technical questions and corrections remain public in this repository. Joining Discord does not complete event registration.
+**Where are event announcements?** Join [the official Discord server](https://discord.gg/GwZdY54Gq). Technical questions and corrections remain public in this repository. Joining Discord does not complete event registration.
 
-**How do we submit Round 1?** Use the Google Form the organisers will release soon through [Discord](https://discord.gg/ka3uRZza6) and [the submission guide](SUBMISSION.md#research-submission). Research submissions close 9 October 2026 at 23:59 IST. GitHub Issues are not the research submission route.
+**How do we submit Round 1?** Use the Google Form the organisers will release soon through [Discord](https://discord.gg/GwZdY54Gq) and [the submission guide](SUBMISSION.md#research-submission). Research submissions close 9 October 2026 at 23:59 IST. GitHub Issues are not the research submission route.
 
 **When are results and Round 2?** Round 1 results will be announced by 11 October 2026 at 22:00 IST. Round 2 starts 12 October. Final builds remain due 18 October 2026 at 23:59 IST through the Final submission issue form.

@@ -1,6 +1,6 @@
 # Vouchsafe sequential matching policy (Team Outliers)
 
-Final build for the CRSU x Romeo & Juliet Hackathon, Vouchsafe track, using starter kit 1.0.0. The submitted policy is `policy.py`, which we call v1. The full write-up is in [REPORT.md](REPORT.md).
+Final build for The Sequential Matching Problem (Romeo & Juliet × IIT Madras Hackathon), using starter kit 1.0.0. The submitted policy is `policy.py`, which we call v1. The full write-up is in [REPORT.md](REPORT.md).
 
 All people and outcomes are synthetic, and the results describe this simulator only.
 
@@ -47,7 +47,8 @@ The gain is small but consistent. On the test split it is positive in all six fa
 | Scenario outcomes, coverage, waiting times, clarification cost, missing feedback, runtime | `REPORT.md` Sections 5 and 9 |
 | Hypothesis-driven ablation and limitations | `REPORT.md` Sections 1, 7 and 10 |
 | Provenance, dependency licences, training compute | `THIRD_PARTY_NOTICES.md`, `REPORT.md` Section 4 |
-| Product integration note | `REPORT.md` Section 11 |
+
+The report also includes a short product integration note (Section 11).
 
 ## Environment
 

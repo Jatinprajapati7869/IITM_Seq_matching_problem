@@ -1,8 +1,8 @@
-# The One Introduction Problem: Consent-First Decision Support for Vouchsafe
+# The One Introduction Problem
 
 ## Sequential reciprocal matching under uncertainty
 
-CRSU x Romeo & Juliet Hackathon · Vouchsafe-focused challenge
+Vouchsafe · Sequential Matching Hackathon
 
 Final participant specification 1.0.0 · 5 October 2026
 
@@ -11,15 +11,6 @@ Build a decision policy that chooses who should be introduced to whom, when an i
 The deliverable is a reproducible Python system that interacts with the supplied simulator, together with a technical report explaining its assumptions, experiments and limitations. A website or mobile interface is optional. It does not replace the decision policy.
 
 This release freezes the participant data, policy interface, outcome definition, technical ranking and submission rules. The complete kit runs offline with Python 3.10 or later. The technical rules in this document govern this repository release.
-
-
-## Product relevance: a useful Vouchsafe prototype
-
-This challenge models one narrow component that could support a Vouchsafe introduction workflow: choosing whether and when to suggest a mutually eligible introduction as information arrives over time. Treat the policy as decision support. A person or authorised operator remains responsible for approving any real-world action; the competition policy must not contact people, make commitments, or override consent.
-
-Alongside the executable policy and technical report, include a concise product integration note in the report. Explain how a real service could preserve explicit consent and hard constraints, show a human-readable reason and uncertainty for each suggestion, allow a person to decline or correct information, minimise data sent to the policy, and monitor failures or uneven outcomes. Identify which assumptions in this simulator would need validation before any real use. The integration note is part of the report and does not change the published technical score.
-
-The supplied simulator is synthetic research material, not a model of actual Vouchsafe members or a validated predictor of relationship outcomes. A good score is evidence only about the supplied simulator.
 
 ## 1 The challenge
 
@@ -222,9 +213,9 @@ Only observable state, clarification results, feedback, policy-owned memory and 
 | Round 2 build starts | 12 October 2026 |
 | Final build submission closes | 18 October 2026, 23:59 |
 
-All times are Indian Standard Time (UTC+05:30). The research deadline is end of day on 9 October, equivalent to 18:29 UTC. Round 1 results will be announced by 10 PM IST on 11 October. Round 2 begins on 12 October; its final submission deadline remains 18 October at 23:59 IST (18:29 UTC). Teams have one to three participants. Mentorship and workshops are not included in this CRSU track. Each team may submit one entry per round; revisions received before that round's deadline replace its earlier entry. Research assessment does not change the public technical rules.
+All times are Indian Standard Time (UTC+05:30). The research deadline is end of day on 9 October, equivalent to 18:29 UTC. Round 1 results will be announced by 10 PM IST on 11 October. Round 2 begins on 12 October; its final submission deadline remains 18 October at 23:59 IST (18:29 UTC). A team consists of one to four participants. Each team may submit one entry per round; revisions received before that round's deadline replace its earlier entry. Research assessment does not change the public technical rules.
 
-**Round 1 research submissions use a Google Form.** The organisers will release the form link soon and announce it through [the official Discord server](https://discord.gg/ka3uRZza6) and this repository's submission guide. The form link is not yet available in this release. GitHub Issues are not the Round 1 submission route.
+**Round 1 research submissions use a Google Form.** The organisers will release the form link soon and announce it through [the official Discord server](https://discord.gg/GwZdY54Gq) and this repository's submission guide. The form link is not yet available in this release. GitHub Issues are not the Round 1 submission route.
 
 Prepare the research note as a PDF or Markdown document. It must explain the hypothesis, reciprocal feasibility, any optional probability estimates, allocation method, clarification strategy, baseline, planned experiments and expected failure cases. Follow the form's upload or document-link instructions once released. The Google Form receipt timestamp determines whether the research submission or revision arrived before the deadline. Retain the form's submission confirmation. If supplying a document link, pin a fixed version rather than changing the linked document after the deadline.
 
@@ -240,7 +231,7 @@ The Round 1 research note is frozen at the Google Form deadline. The Round 2 sub
 
 Use the Question template in this repository's Issues tab for technical questions. Search existing questions first and keep one topic per issue. Maintainers answer publicly so every team receives the same clarification. Use the Bug report template for reproducible kit defects. Never attach real-member data or credentials.
 
-The repository is the authoritative place for the PS, data, FAQ, version history and technical clarifications. Official event announcements and reminders are shared through [this event's Discord server](https://discord.gg/ka3uRZza6). Discord, email announcements and the Unstop listing should link to this repository. No separate chat account is needed to obtain the kit. Rule-changing corrections must be written in CHANGELOG.md and shared through a public issue before they apply; informal messages do not silently amend this release.
+The repository is the authoritative place for the PS, data, FAQ, version history and technical clarifications. Official event announcements and reminders are shared through [this event's Discord server](https://discord.gg/GwZdY54Gq). Discord, email announcements and the Unstop listing should link to this repository. No separate chat account is needed to obtain the kit. Rule-changing corrections must be written in CHANGELOG.md and shared through a public issue before they apply; informal messages do not silently amend this release.
 
 ## 14 Data provenance and permitted use
 
